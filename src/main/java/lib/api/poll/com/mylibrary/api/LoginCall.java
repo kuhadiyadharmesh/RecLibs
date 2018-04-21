@@ -7,6 +7,7 @@ package lib.api.poll.com.mylibrary.api;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import lib.api.poll.com.mylibrary.client.ApiInfo;
 import lib.api.poll.com.mylibrary.client.PollApi;
 import lib.api.poll.com.mylibrary.model.Request.LoginData;
 import lib.api.poll.com.mylibrary.model.Response.LoginResponse;
@@ -91,7 +92,7 @@ public class LoginCall //implements Response.Listener, Response.ErrorListener {
 
         JSONObject jobj = null;
         LoginResponse response_data  = null;
-        jobj =  pollApi.makeHTTPPOSTLogin(PollApi.ApiInfo.login_api, param);
+        jobj =  pollApi.makeHTTPPOSTLogin_SSL(ApiInfo.login_api, param);
 
         if(jobj == null)
         {
