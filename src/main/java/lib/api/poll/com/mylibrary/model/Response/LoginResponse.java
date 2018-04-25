@@ -36,10 +36,21 @@ public class LoginResponse
 
     private String username , userid , emailaddress , token , secretAccesskey ;
 
+    private boolean usernameRequired , emailrequired , phonenumberrequired ;
+
     public LoginResponse(String message)
     {
         this.message = message;
+    }
+    //SocialExtraDailog(response.getBoolean("usernameRequired"), response.getBoolean("emailRequired"), response.getBoolean("phoneNumberRequired"));
 
+    public LoginResponse(String message , boolean usernameRequired , boolean emailrequired , boolean phonenumberrequired )
+    {
+        this.message = message;
+        this.usernameRequired = usernameRequired;
+        this.emailrequired = emailrequired ;
+        this.phonenumberrequired = phonenumberrequired;
+        //this.status = 2;
     }
 
     public LoginResponse(String username , String userid , String emailaddress , String token , String secretAccesskey)
@@ -73,9 +84,27 @@ public class LoginResponse
     {
         return this.message;
     }
+    public String getSecretAccesskey()
+    {
+        return this.secretAccesskey;
+    }
     public int  getStatus()
     {
         return this.status;
+    }
+
+
+    public boolean getUsernameRequired()
+    {
+        return this.usernameRequired;
+    }
+    public boolean getEmailRequired()
+    {
+        return this.emailrequired;
+    }
+    public boolean getPhoneNumberRequired()
+    {
+        return this.phonenumberrequired;
     }
 
 

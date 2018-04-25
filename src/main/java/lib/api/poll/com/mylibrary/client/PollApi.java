@@ -55,6 +55,7 @@ import javax.net.ssl.X509TrustManager;
 
 //import org.apache.http.conn.ssl.SSLSocketFactory;
 
+import lib.api.poll.com.mylibrary.model.Request.HeaderCall;
 import lib.api.poll.com.mylibrary.utils.ConstantMethods;
 
 //import lib.poll.com.mylibrary.utils.ConstantMethods;
@@ -119,6 +120,130 @@ public class PollApi
             // res = EntityUtils.toString(httpResponse.getEntity());
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
+            // is=EntityUtils.To
+            // System.out.println("data Prints ok "+res);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonobject();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonobject();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonobject();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonobject();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            json = sb.toString().trim();
+            Log.d("data prints of ", json);
+        } catch (Exception e) {
+            Log.e("Buffer Error", "Error converting result " + e.toString());
+            return ConstantMethods.Errer_jsonobject();
+        }
+        // JSONArray Jarray_1=null;
+        try {
+            // jObj = new JSONObject(res);
+            System.out.println("Convert data...");
+            jObj = new JSONObject(json);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Gt Error");
+            e.printStackTrace();
+            jObj = null;
+        }
+        return jObj;
+    }
+    public JSONObject makeHTTPPOST_SSL(String url, String param, HeaderCall hdata) // with
+    {
+        try {
+
+            HttpClient httpClient = createHttpClient();
+            HttpPost post = null;
+            Log.d("Rqe Url ", url);
+            Log.d("Req ", param);
+
+            //HttpPost post = null;
+            try
+            {
+                post = new HttpPost(url);
+            }
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return ConstantMethods.Errer_jsonobject();
+            }
+
+            Log.d("Rqe encrypted ", param);
+
+            StringEntity stringEntity = new StringEntity(param);
+
+            stringEntity.setContentType("application/json");
+
+            post.setHeader("userId",hdata.getUserid());
+            post.setHeader("token",hdata.getToken());
+
+            if (url.contentEquals("https://demo.honeyshyam.com/api/v1/Polls/ListPartnerPoll"))
+            {
+                post.setHeader("isParnter", "true");
+            }
+            if (url.contentEquals("https://demo.honeyshyam.com/api/v1/Polls/RefreshSecretAccessKey"))
+            {
+                post.setHeader("accessTokenKey", "3UEj4WdYfRnZFgwFvLjT96yzenG5udAkhXOYNltIANkkLO3cEOR6jVdHkQkUniEC");
+                post.setHeader("refreshTokenKey ", "true");
+            }
+            post.setHeader("version", "1.0");
+
+            post.setEntity(stringEntity);
+            HttpResponse httpResponse = httpClient.execute(post);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            is = httpEntity.getContent();
+
+/*
+            HttpClient client = new DefaultHttpClient();
+            Log.d("Rqe Url ", url);
+            Log.d("Req ", param);
+
+            HttpPost post = null;
+            try {
+                post = new HttpPost(new URI(url));
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return ConstantMethods.Errer_jsonobject();
+            }
+
+            Log.d("Rqe encrypted ", param);
+
+            StringEntity stringEntity = new StringEntity(param);
+
+           // stringEntity.setContentType("application/json");
+            //post.setHeader("Content-Type", "application/json");
+            //post.setHeader("userId", userId);
+           // post.setHeader("token", token);
+
+
+            post.setEntity(stringEntity);
+
+            BasicHttpResponse httpResponse = (BasicHttpResponse) client
+                    .execute(post);
+
+            // res = EntityUtils.toString(httpResponse.getEntity());
+            HttpEntity httpEntity = httpResponse.getEntity();
+            is = httpEntity.getContent();
+            */
             // is=EntityUtils.To
             // System.out.println("data Prints ok "+res);
 
@@ -333,9 +458,12 @@ public class PollApi
             Log.d("Req ", param);
 
             //HttpPost post = null;
-            try {
+            try
+            {
                 post = new HttpPost(url);
-            } catch (Exception e) {
+            }
+            catch (Exception e)
+            {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
                 return ConstantMethods.Errer_jsonobject();
@@ -346,21 +474,13 @@ public class PollApi
             StringEntity stringEntity = new StringEntity(param);
 
             stringEntity.setContentType("application/json");
-            //post.setHeader("Content-Type", "application/json");
             post.setHeader("version", "1.0");
 
             post.setEntity(stringEntity);
-
-            //BasicHttpResponse httpResponse = (BasicHttpResponse) client
-             //       .execute(post);
-
             HttpResponse httpResponse = httpClient.execute(post);
-
-            // res = EntityUtils.toString(httpResponse.getEntity());
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
-            // is=EntityUtils.To
-            // System.out.println("data Prints ok "+res);
+
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

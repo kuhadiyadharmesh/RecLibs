@@ -13,7 +13,7 @@ public class Deviceinfo
     public Deviceinfo(String deviceVersion ,String snsType , String deviceName ,  String snsDeviceId, String channelId)
     {
         this.deviceVersion = deviceVersion;
-        this.deviceId = deviceId;
+        //this.deviceId = deviceId;
         //this.browserName = browserName ;
         //this.browserVersion = browserVersion;
         //this.browserUserAgent = browserUserAgent ;
@@ -56,10 +56,10 @@ public class Deviceinfo
     {
         return this.snsType;
     }
-    public String getDeviceId()
+    /*public String getDeviceId()
     {
         return this.deviceId;
-    }
+    }*/
     public String getSnsDeviceId()
     {
         return  this.snsDeviceId;

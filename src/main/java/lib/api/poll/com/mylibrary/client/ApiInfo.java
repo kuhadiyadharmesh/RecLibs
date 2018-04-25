@@ -21,7 +21,7 @@ public class ApiInfo
     public static String LogOut_api = webUrl + "Polls/LogOut";
     //public static final int LogOut_type = 104;
 
-    public static String DeleteUser_api = webUrl + "Polls/DeleteUser";
+//    public static String DeleteUser_api = webUrl + "Polls/DeleteUser";
     //public static final int DeleteUser_type = 105;
 
     public static String GetBalance_api = webUrl + "Polls/GetBalance";
@@ -33,7 +33,7 @@ public class ApiInfo
     public static String PostAuth_api = webUrl + "Polls/PostAuth";
     //public static final int PostAuth_type = 108;
 
-    public static String ReSendVerifyEmail_api = webUrl + "Polls/ReSendVerifyEmail";
+    public static String ReSendVerifyEmail_api = webUrl + "Polls/ReSendVerifyEmailData";
     //public static final int ReSendVerifyEmail_type = 109;
 
     public static String VerifyPhone_api = webUrl + "Polls/VerifyPhone";

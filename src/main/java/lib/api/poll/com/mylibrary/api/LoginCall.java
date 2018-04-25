@@ -44,13 +44,7 @@ public class LoginCall //implements Response.Listener, Response.ErrorListener {
         pollApi = new PollApi();
         this.data = data ;
     }
-   // private Parse api ;
 
-    //    public LoginCall(Login data , Parse api)
-    //    {
-    //        this.data = data ;
-    //        this.api = api;
-    //    }
 
     public LoginResponse LoginUser_Call()
     {
@@ -102,9 +96,14 @@ public class LoginCall //implements Response.Listener, Response.ErrorListener {
         {
             try
             {
-                if (jobj.has("userId"))//(jobj.getString("status").equals("ok"))
-                { //(String username , String userid , String emailaddress , String token , String secretAccesskey)
-                    response_data = new LoginResponse(jobj.getString("userName").toString(),jobj.getString("userId"),jobj.getString("emailAddress"),jobj.getString("token"),jobj.getString("secretAccessKey"));//(true,jobj.getString("msg"));
+                if (jobj.has("userId"))
+                {
+                    if (jobj.getString("userId").equals("null"))
+                    {
+                        response_data = new LoginResponse(jobj.getString("AdditionalInformation"));
+                        return  response_data;
+                    }
+                    response_data = new LoginResponse(jobj.getString("userName").toString(),jobj.getString("userId"),jobj.getString("emailAddress"),jobj.getString("token"),jobj.getString("secretAccessKey"));
                     return response_data;
                 }
                 else
