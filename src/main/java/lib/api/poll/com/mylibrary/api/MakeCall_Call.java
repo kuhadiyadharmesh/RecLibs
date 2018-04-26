@@ -5,7 +5,7 @@ import org.json.JSONObject;
 
 import lib.api.poll.com.mylibrary.client.ApiInfo;
 import lib.api.poll.com.mylibrary.client.PollApi;
-import lib.api.poll.com.mylibrary.model.Request.HeaderCall;
+import lib.api.poll.com.mylibrary.model.Common.HeaderCall;
 import lib.api.poll.com.mylibrary.model.Request.MakeCallData;
 import lib.api.poll.com.mylibrary.model.Response.Common_Response;
 

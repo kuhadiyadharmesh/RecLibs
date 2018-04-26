@@ -21,6 +21,13 @@ public class GetBalanceResponse
         this.status = 1;
     }
 
+    public int getStatus()
+    {return this.status;}
+    public String getMessage(){return this.message;}
+    public String getBalanceAmount(){return this.balanceAmount;}
+    public String getCreditBalance(){return this.creditBalance;}
+    public String getPollBalance(){return this.pollBalance;}
+
     /*
     {
   "userId": "070f4091-0ac7-4efe-bc93-f0eecc4da8c4",

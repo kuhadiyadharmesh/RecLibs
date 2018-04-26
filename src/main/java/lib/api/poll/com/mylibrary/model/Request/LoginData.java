@@ -1,5 +1,7 @@
 package lib.api.poll.com.mylibrary.model.Request;
 
+import lib.api.poll.com.mylibrary.model.Common.Deviceinfo;
+
 /**
  * Created by Dharmesh-PC on 4/17/2018.
  */
@@ -21,7 +23,7 @@ public class LoginData
             "    \"channelId\": \""+imei+"\"\n" +
             "  }}";*/
   private  String userName , password ,deviceId  ;
-  private  Deviceinfo deviceinfo;
+  private Deviceinfo deviceinfo;
 
     public LoginData(String userName , String password , String deviceId  ,Deviceinfo deviceinfo)
     {

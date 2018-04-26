@@ -1,4 +1,4 @@
-package lib.api.poll.com.mylibrary.model.Request;
+package lib.api.poll.com.mylibrary.model.Common;
 
 /**
  * Created by Dharmesh-PC on 4/25/2018.

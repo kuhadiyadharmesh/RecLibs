@@ -1,5 +1,7 @@
 package lib.api.poll.com.mylibrary.model.Request;
 
+import lib.api.poll.com.mylibrary.model.Common.Deviceinfo;
+
 /**
  * Created by Dharmesh-PC on 4/23/2018.
  */
@@ -31,7 +33,7 @@ public class LoginSocialData
 //    private  String userName , password ,deviceId  ;
     private String deviceId , appid , provider , id , userName , email,phoneNumber , name , givenName , familyName , accessToken , gender ;
 
-    private  Deviceinfo deviceinfo;
+    private Deviceinfo deviceinfo;
 
     public LoginSocialData(String deviceId , String appid , String provider , String id , String userName , String email , String phoneNumber , String name , String givenName , String familyName , String accessToken, String gender
             , Deviceinfo deviceinfo)
