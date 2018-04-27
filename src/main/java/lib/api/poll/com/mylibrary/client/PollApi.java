@@ -318,6 +318,89 @@ public class PollApi
             // res = EntityUtils.toString(httpResponse.getEntity());
             HttpEntity httpEntity = httpResponse.getEntity();
             is = httpEntity.getContent();
+
+
+
+            // is=EntityUtils.To
+            // System.out.println("data Prints ok "+res);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonarray();
+        } catch (ClientProtocolException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonarray();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonarray();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ConstantMethods.Errer_jsonarray();
+        }
+
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(
+                    is, "iso-8859-1"), 8);
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+            is.close();
+            json = sb.toString().trim();
+            Log.d("data prints of ", json);
+        } catch (Exception e) {
+            Log.e("Buffer Error", "Error converting result " + e.toString());
+            return ConstantMethods.Errer_jsonarray();
+        }
+        // JSONArray Jarray_1=null;
+        try {
+            // jObj = new JSONObject(res);
+            System.out.println("Convert data...");
+            Jarray = new JSONArray(json);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            System.out.println("Gt Error");
+            e.printStackTrace();
+            Jarray = null;
+        }
+        return Jarray;
+    }
+
+    public JSONArray makeHTTPPOSTArray_SSL(String url, String param, HeaderCall hdata) // with
+    {
+        try {
+
+            HttpClient httpClient = createHttpClient();
+            HttpPost post = null;
+            Log.d("Rqe Url ", url);
+            Log.d("Req ", param);
+
+            //HttpPost post = null;
+            try
+            {
+                post = new HttpPost(url);
+            }
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return ConstantMethods.Errer_jsonarray();
+            }
+
+            Log.d("Rqe encrypted ", param);
+
+            StringEntity stringEntity = new StringEntity(param);
+
+            stringEntity.setContentType("application/json");
+            post.setHeader("version", "1.0");
+            post.setHeader("userId",hdata.getUserid());
+            post.setHeader("token",hdata.getToken());
+
+            post.setEntity(stringEntity);
+            HttpResponse httpResponse = httpClient.execute(post);
+            HttpEntity httpEntity = httpResponse.getEntity();
+            is = httpEntity.getContent();
             // is=EntityUtils.To
             // System.out.println("data Prints ok "+res);
 
