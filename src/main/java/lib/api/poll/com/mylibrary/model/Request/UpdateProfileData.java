@@ -1,5 +1,11 @@
 package lib.api.poll.com.mylibrary.model.Request;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Map;
+
 /**
  * Created by Dharmesh-PC on 4/26/2018.
  */
@@ -7,11 +13,81 @@ package lib.api.poll.com.mylibrary.model.Request;
 public class UpdateProfileData
 {
 
-    private int status = 0,viewCounter,phoneType,countryCode,addressZip,publicPolls,businessPolls,privatePolls,totalPolls,;
-    private String id , relationshipStatus , maritalStatus,pictureId,userId,companyName,jobTitle,phoneNumber,gender,birthDate,educationLevel,addressLine1,addressLine2,addressCity,addressCountry,addressState;
-    private String ownerId,pictureUrl,lastLogin,memberSince,firstName,lastName,payPalEmail;
+//    private int viewCounter,phoneType,countryCode,addressZip,publicPolls,businessPolls,privatePolls,totalPolls;
+//    private String id , relationshipStatus , maritalStatus,pictureId,userId,companyName,jobTitle,phoneNumber,gender,birthDate,educationLevel,addressLine1,addressLine2,addressCity,addressCountry,addressState;
+//    private String ownerId,pictureUrl,lastLogin,memberSince,firstName,lastName,payPalEmail;
+//
+//    private boolean isPublicProfile,isPhonePublic,isEmailPublic,isEmailVerified,isPhoneVerified;
 
-    private boolean isPublicProfile,isPhonePublic,isEmailPublic,isEmailVerified,isPhoneVerified;
+    //Map<String, Object> data = null;
+
+    private JSONObject jsonObject;
+
+
+    /*
+    "deletedPictures": [
+    "047b5571-b314-47b6-9441-a5905c271a15",
+    "bed187f2-8ab6-429c-b288-23726b981cdb"
+  ]
+
+  "profilePictures": {
+    "9398160e-e96a-4224-8f60-10e452ee2b86": "sample string 2",
+    "7f0f97da-253d-4bd4-9985-0f6ee9cdb2ed": "sample string 4"
+  },
+     */
+    public UpdateProfileData(Map<String, Object> data)
+    {
+        //this.data = data ;
+        jsonObject = new JSONObject(data);
+    }
+
+    public String getId(){return  getStringValue("id");}
+//    public String getrelationshipStatus(){return getStringValue("relationshipStatus");}
+    public String getmaritalStatus(){return getStringValue("maritalStatus");}
+    public String getpictureId(){return  getStringValue("pictureId");}
+
+    public String getuserId(){return getStringValue("userId");}
+    public String getCompanyName(){return getStringValue("companyName");}
+    public String getjobTitle(){return getStringValue("jobTitle");}
+    public String getphoneNumber() {return getStringValue("phoneNumber");}
+    public String getgender(){return getStringValue("gender");}
+    public String getbirthDate(){return getStringValue("birthDate");}
+    public String geteducationLevel() {return  getStringValue("educationLevel");}
+    public String getaddressLine1(){return getStringValue("addressLine1");}
+    public String getaddressLine2(){return getStringValue("addressLine2");}
+    public String getaddressCity(){return getStringValue("addressCity");}
+    public String getaddressCountry(){return getStringValue("addressCountry");}
+    public String getaddressState(){return getStringValue("addressState");}
+    public String getaddressZip(){return getStringValue("addressZip");}
+//    public String getownerId(){return getStringValue("ownerId");}
+    public String getpictureUrl(){return getStringValue("pictureUrl");}
+
+//    public String getlastLogin(){return getStringValue("lastLogin");}
+//    public String getmemberSince(){return getStringValue("memberSince");}
+    public String getfirstName(){return getStringValue("firstName");}
+    public String getlastName(){return getStringValue("lastName");}
+    public String getpayPalEmail(){return getStringValue("payPalEmail");}
+
+//    public String getphoneVerifiedDateTime(){return getStringValue("phoneVerifiedDateTime");}
+//    public String getphoneVerificationMethod(){return getStringValue("phoneVerificationMethod");}
+//    public String getemailVerifiedDateTime(){return getStringValue("emailVerifiedDateTime");}
+
+    public boolean getisPublicProfile(){return  getBooleanValue("isPublicProfile");}
+//    public boolean getisPhonePublic(){return getBooleanValue("isPhonePublic");}
+//    public boolean getisEmailPublic(){return getBooleanValue("isEmailPublic");}
+//    public boolean getisEmailVerified(){return getBooleanValue("isEmailVerified");}
+//    public boolean getisPhoneVerified(){return getBooleanValue("isPhoneVerified");}
+
+//    public int getviewCounter(){return getIntValue("viewCounter");}
+//    public int getphoneType(){return getIntValue("phoneType");}
+    public int getcountryCode(){return getIntValue("countryCode");}
+//    public int getpublicPolls(){return getIntValue("publicPolls");}
+//    public int getbusinessPolls(){return getIntValue("businessPolls");}
+//    public int getprivatePolls(){return getIntValue("privatePolls");}
+//    public int gettotalPolls(){return getIntValue("totalPolls");}
+
+    public JSONArray getdeletedPictures(){return getArrayValue("deletedPictures");}
+    public String getprofilePictures(){return getStringValue("profilePictures");}
 
 
     /*
@@ -63,4 +139,53 @@ public class UpdateProfileData
   "payPalEmail": "sample string 25"
     }
      */
+
+    private String getStringValue(String key)
+    {
+        try
+        {
+            return  this.jsonObject.getString(key);
+        }
+        catch (JSONException e)
+        {
+            return null;
+        }
+
+    }
+
+    private boolean getBooleanValue(String key)
+    {
+        try
+        {
+            return  this.jsonObject.getBoolean(key);
+        }
+        catch (JSONException e)
+        {
+            return false;
+        }
+    }
+
+    private int getIntValue(String key)
+    {
+        try
+        {
+            return  this.jsonObject.getInt(key);
+        }
+        catch (JSONException e)
+        {
+            return -1;
+        }
+    }
+
+    private JSONArray getArrayValue(String key)
+    {
+        try
+        {
+            return  this.jsonObject.getJSONArray(key);
+        }
+        catch (JSONException e)
+        {
+            return null;
+        }
+    }
 }
