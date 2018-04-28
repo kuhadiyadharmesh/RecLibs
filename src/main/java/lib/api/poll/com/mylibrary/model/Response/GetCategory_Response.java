@@ -6,23 +6,23 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-import lib.api.poll.com.mylibrary.model.Common.City;
+import lib.api.poll.com.mylibrary.model.Common.Category;
 import lib.api.poll.com.mylibrary.model.Common.States;
 
 /**
  * Created by Dharmesh-PC on 4/27/2018.
  */
 
-public class GetCityByState_Response
+public class GetCategory_Response
 {
     private int status = 0;
     private String message = "";
-    private List<City> data = null;
-    public GetCityByState_Response(String message)
+    private List<Category> data = null;
+    public GetCategory_Response(String message)
     {
         this.message = message;
     }
-    public GetCityByState_Response(JSONArray jsonArray)
+    public GetCategory_Response(JSONArray jsonArray)
     {
         //this.message = message;
 
@@ -32,11 +32,11 @@ public class GetCityByState_Response
         {
            // JSONArray jar = jsonArray.getJSONArray("items");
             //data = new ArrayList<>();
-            City d ;
+            Category d ;
             for (int i=0 ; i<= jsonArray.length() ; i++)
             {
                 JSONObject jo = jsonArray.getJSONObject(i);
-                d = new City(jo.getInt("id"),jo.getString("name"));
+                d = new Category(jo.getInt("catId"),jo.getString("catName"));
                 data.add(d);
             }
             this.status = 1;
@@ -54,7 +54,7 @@ public class GetCityByState_Response
     public String getMessage(){return this.message;}
     public int getStatus(){return  this.status;}
 
-    public List<City> getCountries()
+    public List<Category> getCountries()
     {
         return this.data;
     }

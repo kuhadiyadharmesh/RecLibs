@@ -37,7 +37,7 @@ public class GetStateByCountry_Response
             for (int i=0 ; i<= jsonArray.length() ; i++)
             {
                 JSONObject jo = jsonArray.getJSONObject(i);
-                d = new States(jo.getInt("id"),jo.getString("stateName"));
+                d = new States(jo.getInt("id"),jo.getString("name"));
                 data.add(d);
             }
             this.status = 1;

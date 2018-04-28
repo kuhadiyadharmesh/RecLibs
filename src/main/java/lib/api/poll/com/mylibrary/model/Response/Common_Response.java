@@ -23,4 +23,7 @@ public class Common_Response
         this.status = status;
     }
 //    public Common_Response
+
+    public int getStatus(){return this.status;}
+    public String getMessage(){return this.message;}
 }
