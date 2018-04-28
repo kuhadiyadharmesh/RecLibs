@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lib.api.poll.com.mylibrary.model.Common.City;
@@ -31,12 +32,12 @@ public class GetCityByState_Response
         try
         {
            // JSONArray jar = jsonArray.getJSONArray("items");
-            //data = new ArrayList<>();
+            data = new ArrayList<>();
             City d ;
             for (int i=0 ; i<= jsonArray.length() ; i++)
             {
                 JSONObject jo = jsonArray.getJSONObject(i);
-                d = new City(jo.getInt("id"),jo.getString("name"));
+                d = new City(jo.getInt("id"),jo.getString("cityName"));
                 data.add(d);
             }
             this.status = 1;

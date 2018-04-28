@@ -30,7 +30,7 @@ public class GetCountries_Response
 
         try
         {
-            JSONArray jar = jsonObject.getJSONArray("items");
+            JSONArray jar = jsonObject.getJSONArray("item");
             data = new ArrayList<>();
             Countries d ;
             for (int i=0 ; i<= jar.length() ; i++)

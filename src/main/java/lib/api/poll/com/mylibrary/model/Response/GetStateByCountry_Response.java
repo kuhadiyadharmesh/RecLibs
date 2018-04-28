@@ -19,6 +19,9 @@ public class GetStateByCountry_Response
     private int status = 0;
     private String message = "";
     private List<States> data = null;
+
+
+
     public GetStateByCountry_Response(String message)
     {
         this.message = message;
@@ -27,7 +30,9 @@ public class GetStateByCountry_Response
     {
         //this.message = message;
 
-        this.data = data ;
+        //this.data = data ;
+        //this.json
+        data = new ArrayList<>();
 
         try
         {
@@ -37,7 +42,7 @@ public class GetStateByCountry_Response
             for (int i=0 ; i<= jsonArray.length() ; i++)
             {
                 JSONObject jo = jsonArray.getJSONObject(i);
-                d = new States(jo.getInt("id"),jo.getString("name"));
+                d = new States(jo.getInt("id"),jo.getString("stateName"));
                 data.add(d);
             }
             this.status = 1;
